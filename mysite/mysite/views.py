@@ -37,7 +37,12 @@ def index(request):
     params = {'name': 'Sunil', 'place': 'Nepal'}
     return render(request, 'index.html', params)
 
-
+def removepunc(request):
+    # Get the text
+    djtext = request.GET.get('text', 'default')
+    print(djtext)
+    # Analyze the text
+    return HttpResponse("remove punc")
 
 
 
