@@ -31,7 +31,7 @@ def charcount(request):
     return HttpResponse("charcount <a href='/'>back</a>")
 """
 
-
+'''
 # template
 def index(request):
     params = {'name': 'Sunil', 'place': 'Nepal'}
@@ -43,6 +43,40 @@ def removepunc(request):
     print(djtext)
     # Analyze the text
     return HttpResponse("remove punc")
+'''
 
+"""
+def index(request):
+    return render(request, 'index.html')
 
+def analyze(request):
+    # Get the text
+    djtext = request.GET.get('text', 'default')
+    removepunc = request.GET.get('removepunc', 'off')
+    print(removepunc)
+    print(djtext)
+    # Analyze the text
+    return HttpResponse("remove punc")
+"""
 
+def index(request):
+    return render(request, 'index.html')
+
+def analyze(request):
+    # Get the text
+    djtext = request.GET.get('text', 'default')
+    removepunc = request.GET.get('removepunc', 'off')
+    print(removepunc)
+    print(djtext)
+    if removepunc == "on":
+        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        analyzed = ""
+        for char in djtext:
+            if char not in punctuations:
+                analyzed += char
+
+        params = {'purpose':'Removed Punctuations', 'analyzed_text': analyzed}
+        # Analyze the text
+        return render(request, 'analyze.html', params)
+    else:
+        return HttpResponse("Error")
