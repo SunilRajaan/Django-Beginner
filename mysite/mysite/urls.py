@@ -53,6 +53,15 @@ urlpatterns = [
 ]
 """
 
+"""
+#Welcome to the text analyzer. Enter your text below
+urlpatterns = [
+     path('admin/', admin.site.urls),
+     path('', views.index, name='index'),
+     path('analyze', views.analyze, name='analyze'),
+]
+"""
+
 urlpatterns = [
      path('admin/', admin.site.urls),
      path('', views.index, name='index'),

@@ -59,6 +59,63 @@ def analyze(request):
     return HttpResponse("remove punc")
 """
 
+"""
+# Welcome to the text analyzer. Enter your text below
+def index(request):
+    return render(request, 'index2.html')
+
+def analyze(request):
+    # Get the text
+    djtext = request.GET.get('text', 'default')
+
+    # Check checkbox value
+    removepunc = request.GET.get('removepunc', 'off')
+    fullcaps = request.GET.get('fullcaps', 'off')
+    newlineremover = request.GET.get('newlineremover', 'off')
+    extraspaceremover = request.GET.get('extraspaceremover', 'off')
+    
+    # Check which checkbox is on
+    if removepunc == "on":
+        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        analyzed = ""
+        for char in djtext:
+            if char not in punctuations:
+                analyzed += char
+
+        params = {'purpose':'Removed Punctuations', 'analyzed_text': analyzed}
+        return render(request, 'analyze.html', params)
+    
+    elif (fullcaps == 'on'):
+        analyzed = ""
+        for char in djtext:
+            analyzed += char.upper()
+        params = {'purpose':'Changed to Uppercase', 'analyzed_text': analyzed}
+        return render(request, 'analyze.html', params)    
+    
+    elif (newlineremover=='on'):
+        analyzed = ""
+        for char in djtext:
+            if char != '\n':
+                analyzed += char
+        params = {'purpose':'Removed Newlines', 'analyzed_text': analyzed}
+        return render(request, 'analyze.html', params) 
+    
+    elif (extraspaceremover=='on'):
+        analyzed = ""
+        for index, char in enumerate(djtext):
+            if not (djtext[index] == " " and djtext[index+1] == " "):
+                analyzed += char
+
+        params = {'purpose':'Removed Extra Space', 'analyzed_text': analyzed}
+        return render(request, 'analyze2.html', params) 
+    
+     
+    else:
+        return HttpResponse("Error")
+"""
+
+
+# bootstrap
 def index(request):
     return render(request, 'index.html')
 
@@ -109,4 +166,4 @@ def analyze(request):
     
      
     else:
-        return HttpResponse("Error")
+        return HttpResponse("Please select at least one operation.")
